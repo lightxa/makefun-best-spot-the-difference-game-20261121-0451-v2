@@ -1,0 +1,117 @@
+/* Selisih Tiga Dunia — gaya visual: senja hangat, panel berdampingan, fokus ke gambar. */
+:root {
+  --ink: #2b2118;
+  --paper: #fdf6e9;
+  --panel: #fffaf0;
+  --accent: #c2571b;
+  --accent-soft: #f3d9a4;
+  --teal: #14655c;
+  --gold: #e9a13b;
+  --good: #2e7d32;
+  --bad: #b3261e;
+  --shadow: 0 10px 30px rgba(43, 33, 24, 0.18);
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: linear-gradient(180deg, #f7e8c8 0%, #f3d9a4 55%, #eec27f 100%);
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", serif;
+  min-height: 100vh;
+}
+#app { max-width: 1220px; margin: 0 auto; padding: 14px 16px 20px; }
+#topbar {
+  display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
+  background: var(--panel); border: 2px solid #e3c98f; border-radius: 14px;
+  padding: 10px 16px; box-shadow: var(--shadow);
+}
+#brand { display: flex; align-items: center; gap: 10px; min-width: 250px; }
+#brand-mark { font-size: 34px; color: var(--accent); line-height: 1; }
+#brand h1 { font-size: 21px; margin: 0; letter-spacing: 1px; color: var(--accent); }
+#brand p { margin: 2px 0 0; font-size: 12.5px; font-style: italic; color: #6d5138; }
+#hud { display: flex; gap: 8px; flex-wrap: wrap; flex: 1; justify-content: center; }
+.hud-box {
+  background: #fff; border: 1.5px solid #e3c98f; border-radius: 10px;
+  padding: 5px 12px; min-width: 86px; text-align: center;
+}
+.hud-label { display: block; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: #8a6d4b; }
+.hud-box span:not(.hud-label) { font-size: 19px; font-weight: bold; }
+#timer-box.low #hud-timer { color: var(--bad); }
+#timer-box.low { border-color: var(--bad); animation: pulse 1s infinite; }
+@keyframes pulse { 50% { box-shadow: 0 0 0 4px rgba(179, 38, 30, 0.18); } }
+#timer-bar { display: block; height: 5px; background: #eadfc6; border-radius: 3px; margin-top: 3px; overflow: hidden; }
+#timer-fill { display: block; height: 100%; width: 100%; background: var(--teal); transition: width 0.5s linear; }
+#timer-box.low #timer-fill { background: var(--bad); }
+#top-actions { display: flex; gap: 8px; }
+button {
+  font-family: inherit; cursor: pointer; border-radius: 10px;
+  border: 1.5px solid var(--accent); background: #fff; color: var(--accent);
+  padding: 8px 12px; font-size: 14px; font-weight: bold;
+}
+button:hover { background: var(--accent); color: #fff; }
+button:disabled { opacity: 0.45; cursor: default; }
+#stage { position: relative; display: flex; gap: 14px; margin-top: 14px; }
+.panel {
+  flex: 1; background: var(--panel); border: 2px solid #e3c98f; border-radius: 14px;
+  padding: 10px; box-shadow: var(--shadow); position: relative; overflow: hidden;
+}
+.panel-tag {
+  font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: #8a6d4b;
+  margin-bottom: 8px; display: flex; justify-content: space-between;
+}
+.panel svg { display: block; width: 100%; height: auto; border-radius: 8px; cursor: crosshair; }
+.panel.shake { animation: shake 0.3s; }
+@keyframes shake { 20% { transform: translateX(-5px); } 60% { transform: translateX(5px); } }
+#reticle {
+  position: absolute; width: 34px; height: 34px; margin: -17px 0 0 -17px;
+  border: 2px solid var(--accent); border-radius: 50%; pointer-events: none;
+  display: none; z-index: 5;
+}
+#reticle span { position: absolute; left: 50%; top: 50%; width: 6px; height: 6px; margin: -3px 0 0 -3px; background: var(--accent); border-radius: 50%; }
+#reticle.on { display: block; }
+#toast {
+  position: absolute; left: 50%; top: 46%; transform: translate(-50%, -50%);
+  background: rgba(43, 33, 24, 0.92); color: #fff; padding: 10px 18px; border-radius: 999px;
+  font-size: 16px; opacity: 0; pointer-events: none; transition: opacity 0.25s; z-index: 6; white-space: nowrap;
+}
+#toast.show { opacity: 1; }
+#helpbar {
+  display: flex; gap: 22px; flex-wrap: wrap; justify-content: center;
+  margin-top: 12px; font-size: 13px; color: #6d5138;
+}
+#helpbar b { color: var(--accent); }
+#overlay {
+  position: fixed; inset: 0; background: rgba(43, 33, 24, 0.55);
+  display: none; align-items: center; justify-content: center; z-index: 10; padding: 20px;
+}
+#overlay.show { display: flex; }
+#overlay-card {
+  background: var(--paper); border: 2px solid var(--gold); border-radius: 18px;
+  max-width: 560px; width: 100%; padding: 28px 30px; text-align: center; box-shadow: var(--shadow);
+}
+#overlay-card h2 { margin: 0 0 8px; color: var(--accent); letter-spacing: 1px; font-size: 26px; }
+#overlay-card p { margin: 8px 0; line-height: 1.55; }
+#scene-pick { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin: 14px 0 6px; }
+.scene-btn { border-color: var(--teal); color: var(--teal); }
+.scene-btn.picked, .scene-btn:hover { background: var(--teal); color: #fff; }
+#diff-pick { display: flex; gap: 8px; justify-content: center; align-items: center; flex-wrap: wrap; margin: 8px 0 16px; }
+.pick-label { font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: #8a6d4b; }
+.diff-btn.picked { background: var(--accent); color: #fff; }
+#btn-start { font-size: 17px; padding: 11px 26px; background: var(--accent); color: #fff; }
+#btn-start:hover { background: #a84815; }
+#overlay-foot { font-size: 12px; color: #8a6d4b; font-style: italic; }
+#overlay-stats { display: flex; gap: 10px; justify-content: center; margin: 12px 0; flex-wrap: wrap; }
+.stat-chip { background: #fff; border: 1.5px solid #e3c98f; border-radius: 10px; padding: 8px 14px; }
+.stat-chip b { display: block; font-size: 20px; color: var(--accent); }
+.stat-chip span { font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: #8a6d4b; }
+/* Penanda di dalam SVG: lingkaran temuan, cincin petunjuk, dan efek klik. */
+.mark-found { animation: pop 0.45s ease-out; }
+@keyframes pop { 0% { transform: scale(0.4); opacity: 0; } 70% { transform: scale(1.15); } 100% { transform: scale(1); } }
+.mark-hint { animation: hintpulse 0.8s infinite; }
+@keyframes hintpulse { 50% { opacity: 0.35; } }
+.click-miss { animation: misspop 0.4s ease-out; }
+@keyframes misspop { 0% { transform: scale(0.5); opacity: 1; } 100% { transform: scale(1.6); opacity: 0; } }
+@media (max-width: 760px) {
+  #stage { flex-direction: column; }
+  #brand h1 { font-size: 17px; }
+}

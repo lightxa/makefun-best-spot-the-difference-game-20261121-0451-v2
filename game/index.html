@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Selisih Tiga Dunia — Cari Perbedaannya</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="app">
+  <header id="topbar">
+    <div id="brand">
+      <span id="brand-mark" aria-hidden="true">&#9678;</span>
+      <div>
+        <h1>SELISIH TIGA DUNIA</h1>
+        <p>Cari perbedaannya &middot; tiga dunia, tiga puluh selisih</p>
+      </div>
+    </div>
+    <div id="hud" role="status">
+      <div class="hud-box"><span class="hud-label">Dunia</span><span id="hud-scene">Stasiun Senja</span></div>
+      <div class="hud-box"><span class="hud-label">Ditemukan</span><span id="hud-counter">0 / 10</span></div>
+      <div class="hud-box" id="timer-box"><span class="hud-label">Waktu</span><span id="hud-timer">3:00</span><span id="timer-bar"><span id="timer-fill"></span></span></div>
+      <div class="hud-box"><span class="hud-label">Skor</span><span id="hud-score">0</span></div>
+      <div class="hud-box"><span class="hud-label">Petunjuk</span><span id="hud-hints">&#9679;&#9679;&#9679;</span></div>
+    </div>
+    <div id="top-actions">
+      <button id="btn-hint" type="button" title="Petunjuk (H)">&#10022; Petunjuk</button>
+      <button id="btn-sound" type="button" title="Suara (M)">&#9834; Suara</button>
+      <button id="btn-restart" type="button" title="Ulangi dunia (R)">&#8635; Ulang</button>
+    </div>
+  </header>
+
+  <main id="stage">
+    <section class="panel" id="panel-a" aria-label="Gambar A, asli">
+      <div class="panel-tag">Gambar A &middot; asli</div>
+      <svg id="svg-a" viewBox="0 0 560 400" role="img" aria-label="Gambar A"></svg>
+    </section>
+    <section class="panel" id="panel-b" aria-label="Gambar B, ada yang beda">
+      <div class="panel-tag">Gambar B &middot; ada yang beda</div>
+      <svg id="svg-b" viewBox="0 0 560 400" role="img" aria-label="Gambar B"></svg>
+    </section>
+    <div id="reticle" aria-hidden="true"><span></span></div>
+    <div id="toast" aria-live="polite"></div>
+  </main>
+
+  <footer id="helpbar">
+    <span><b>Klik</b> selisih di gambar mana pun &middot; <b>panah</b> gerakkan bidikan, <b>Enter</b> periksa</span>
+    <span><b>H</b> petunjuk &middot; <b>N</b> dunia berikut &middot; <b>R</b> ulangi &middot; <b>M</b> suara</span>
+    <span id="combo-line">Kombo <b id="hud-combo">x1</b> &middot; <span id="hud-level">Dunia 1 dari 3</span></span>
+  </footer>
+
+  <div id="overlay" class="show">
+    <div id="overlay-card">
+      <h2 id="overlay-title">SELISIH TIGA DUNIA</h2>
+      <p id="overlay-text">Dua gambar tampak sama. Padahal ada 10 selisih tersembunyi di setiap dunia. Temukan semuanya sebelum waktu habis.</p>
+      <div id="scene-pick" role="group" aria-label="Pilih dunia"></div>
+      <div id="diff-pick" role="group" aria-label="Pilih kesulitan">
+        <span class="pick-label">Kesulitan</span>
+        <button type="button" data-diff="santai" class="diff-btn">Santai &middot; 5:00</button>
+        <button type="button" data-diff="klasik" class="diff-btn picked">Klasik &middot; 3:00</button>
+        <button type="button" data-diff="kilat" class="diff-btn">Kilat &middot; 1:30</button>
+      </div>
+      <button id="btn-start" type="button">Mulai Berburu</button>
+      <p id="overlay-foot">Stasiun Senja &middot; Perpustakaan Ajaib &middot; Kebun Kaca &mdash; semua digambar tangan sebagai SVG, tanpa gambar pinjaman.</p>
+    </div>
+  </div>
+</div>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>
